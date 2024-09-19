@@ -1,6 +1,8 @@
 package modelo;
 
-public class Cocina extends Producto {
+import interfaces.CocinaInterface;
+
+public class Cocina extends Producto implements CocinaInterface {
     private int quemadores;
 
     public Cocina() {
@@ -24,5 +26,10 @@ public class Cocina extends Producto {
         return "Cocina{" +
                 "quemadores=" + quemadores +
                 '}';
+    }
+
+    @Override
+    public void incluirGas() {
+        System.out.println("incluir gas en la cocinassss");
     }
 }
