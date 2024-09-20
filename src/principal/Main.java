@@ -57,7 +57,8 @@ public class Main {
                 System.out.println("Felicidades a comprado una cocina");
 
                 if (responseGas.equals("y")){
-                    System.out.println("Con gas incluido");
+//                    System.out.println("Con gas incluido");
+                    cocina.incluirGas();
                     System.out.println("Total a pagar: " + cocina.getPrecio() + 5000);
 
                 } else if (responseGas.equals("n")){
