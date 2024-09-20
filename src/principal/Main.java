@@ -25,7 +25,7 @@ public class Main {
 
         switch (option){
             case 1:
-                venderCocina(cocina);
+                cocina = venderCocina(cocina);
                 break;
             case 2:
                 venderRefrigerador();
@@ -35,24 +35,43 @@ public class Main {
                 System.out.println("Gracias por preferirnos, vuelva pronto");
                 break;
         }
-
-
     }
-    private static void venderCocina(Cocina cocina){
+
+    private static Cocina venderCocina(Cocina cocina){
         Scanner sc = new Scanner(System.in);
-        String response = "";
+        String responseVenta = "";
+        String responseGas = "";
 
         System.out.println("Valor: "+ cocina.getPrecio());
         System.out.println("Cuenta con: " + cocina.getQuemadores() + " quemadores");
         System.out.println("Articulos disponibles: " + cocina.getCantidadDisponible());
-        while (response != "y" || response != "n"){
+
+        while (responseVenta != "y" || responseVenta != "n"){
             System.out.println("Presione 'Y' para comprar o 'N' para cancelar ");
-            response = sc.nextLine().toLowerCase();
-            if (response.equals("y")){
-                System.out.println("Desea incluir un gas?");
+            responseVenta = sc.nextLine().toLowerCase();
+
+            if (responseVenta.equals("y")){
+                System.out.println("Desea incluir un gas? Y/N");
+                cocina.setCantidadDisponible(cocina.getCantidadDisponible()-1);
+                responseGas  = sc.nextLine().toLowerCase();
+                System.out.println("Felicidades a comprado una cocina");
+
+                if (responseGas.equals("y")){
+                    System.out.println("Con gas incluido");
+                    System.out.println("Total a pagar: " + cocina.getPrecio() + 5000);
+
+                } else if (responseGas.equals("n")){
+                    System.out.println("Total a pagar: " + cocina.getPrecio());
+                }
+
+                System.out.println("Disponibles: " + cocina.getCantidadDisponible());
+
+            } else if (responseVenta.equals("n")){
+                System.out.println("Operacion cancelada");
             }
         }
 
+        return cocina;
     }
 
     private static void venderRefrigerador(){

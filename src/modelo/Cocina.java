@@ -30,6 +30,6 @@ public class Cocina extends Producto implements CocinaInterface {
 
     @Override
     public void incluirGas() {
-        System.out.println("incluir gas en la cocinassss");
+        System.out.println("con gas incluido");
     }
 }
