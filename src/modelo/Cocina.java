@@ -24,12 +24,14 @@ public class Cocina extends Producto implements CocinaInterface {
     @Override
     public String toString() {
         return "Cocina{" +
-                "quemadores=" + quemadores +
+                "precio=" + getPrecio() +
+                ", cantidadDisponible=" + getCantidadDisponible() +
+                ", quemadores=" + quemadores +
                 '}';
     }
 
     @Override
     public void incluirGas() {
-        System.out.println("con gas incluido");
+        System.out.println("Con gas incluido");
     }
 }

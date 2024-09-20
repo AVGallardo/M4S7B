@@ -20,6 +20,32 @@ public class Refrigerador extends Producto implements ProductoInterface {
         this.puertas = puertas;
     }
 
+    public String getGastoElectrico() {
+        return gastoElectrico;
+    }
+
+    public void setGastoElectrico(String gastoElectrico) {
+        this.gastoElectrico = gastoElectrico;
+    }
+
+    public int getPuertas() {
+        return puertas;
+    }
+
+    public void setPuertas(int puertas) {
+        this.puertas = puertas;
+    }
+
+    @Override
+    public String toString() {
+        return "Refrigerador{" +
+                "gastoElectrico='" + gastoElectrico + '\'' +
+                ", puertas=" + puertas +
+                ", precio=" + getPrecio() +
+                ", cantidadDisponibles=" + getCantidadDisponible() +
+                '}';
+    }
+
     @Override
     public void cambiarPrecio() {
         System.out.println("cambiar precio en refrigerador");
@@ -28,6 +54,5 @@ public class Refrigerador extends Producto implements ProductoInterface {
     @Override
     public void disponilbles() {
         System.out.println("disponibles en refrigerador");
-
     }
 }

@@ -8,10 +8,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Hello world!");
-        Cocina cocina = new Cocina("11000",12,6);
+        Cocina cocina = new Cocina("110000",12,6);
         Refrigerador refrigerador = new Refrigerador("150000",15,"3000",3);
-        cocina.incluirGas();//acceso al metodo en el objeto cocina,que imnplementa a CocinaInterface
         Scanner sc = new Scanner(System.in);
         int option = 0;
 
@@ -21,19 +19,20 @@ public class Main {
             System.out.println("2.- Refrigerador");
             System.out.println("3.- Salir");
             option = sc.nextInt();
-        }
 
-        switch (option){
-            case 1:
-                cocina = venderCocina(cocina);
-                break;
-            case 2:
-                venderRefrigerador();
-                break;
-
-            case 3:
-                System.out.println("Gracias por preferirnos, vuelva pronto");
-                break;
+            switch (option){
+                case 1:
+                    cocina = venderCocina(cocina);
+                    break;
+                case 2:
+                    refrigerador = venderRefrigerador(refrigerador);
+                    break;
+                case 3:
+                    System.out.println("Gracias por preferirnos, vuelva pronto");
+                    break;
+                default:
+                    System.out.println("Opcion no valida");
+            }
         }
     }
 
@@ -46,7 +45,9 @@ public class Main {
         System.out.println("Cuenta con: " + cocina.getQuemadores() + " quemadores");
         System.out.println("Articulos disponibles: " + cocina.getCantidadDisponible());
 
-        while (responseVenta != "y" || responseVenta != "n"){
+        while (!responseVenta.equals("y") && !responseVenta.equals("n") &&
+                !responseVenta.equals("Y") && !responseVenta.equals("N")){
+
             System.out.println("Presione 'Y' para comprar o 'N' para cancelar ");
             responseVenta = sc.nextLine().toLowerCase();
 
@@ -57,15 +58,14 @@ public class Main {
                 System.out.println("Felicidades a comprado una cocina");
 
                 if (responseGas.equals("y")){
-//                    System.out.println("Con gas incluido");
                     cocina.incluirGas();
-                    System.out.println("Total a pagar: " + cocina.getPrecio() + 5000);
+                    System.out.println("Total a pagar: " + (Integer.parseInt(cocina.getPrecio()) + 5000));
 
                 } else if (responseGas.equals("n")){
                     System.out.println("Total a pagar: " + cocina.getPrecio());
                 }
 
-                System.out.println("Disponibles: " + cocina.getCantidadDisponible());
+                System.out.println("Disponibles Actuales: " + cocina.getCantidadDisponible());
 
             } else if (responseVenta.equals("n")){
                 System.out.println("Operacion cancelada");
@@ -75,7 +75,26 @@ public class Main {
         return cocina;
     }
 
-    private static void venderRefrigerador(){
-        System.out.println();
+    private static Refrigerador venderRefrigerador(Refrigerador refrigerador){
+        Scanner sc = new Scanner(System.in);
+        String responseVenta = "";
+
+        System.out.println("Cuenta con: " + refrigerador.getPuertas() + " puertas");
+        System.out.println("Tiene un gasto de: " + refrigerador.getGastoElectrico() + " KWH");
+        System.out.println("Articulos disponibles: " + refrigerador.getCantidadDisponible());
+        System.out.println("Valor: "+ refrigerador.getPrecio());
+        System.out.println("Presione 'Y' para comprar o 'N' para cancelar ");
+        responseVenta = sc.nextLine().toLowerCase();
+        if (responseVenta.equals("y")){
+            refrigerador.setCantidadDisponible(refrigerador.getCantidadDisponible()-1);
+            System.out.println("Total: "+ refrigerador.getPrecio());
+            System.out.println("Felicidades a comprado un refrigerador");
+
+        } else if (responseVenta.equals("n")){
+            System.out.println("Operacion cancelada");
+        }
+        System.out.println("Disponibles Actuales: " + refrigerador.getCantidadDisponible());
+
+        return refrigerador;
     }
 }
